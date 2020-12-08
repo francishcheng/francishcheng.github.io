@@ -17,10 +17,19 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>アーカイブ - FC</title>
+  <title>about - FC</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -42,7 +51,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 30vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -137,7 +146,7 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                アーカイブ
+                about
               
             </span>
 
@@ -161,34 +170,10 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">合計 3 件のポスト</p>
-  <hr>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/12/08/missing/lecture-1/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">lecture 1-shell</span>
-      <span style="float: right;">12-08</span>
-    </a>
-  
-    
-    <a href="/2020/12/08/missing/lecture-2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">lecture2 - Shell Tools and Scripting</span>
-      <span style="float: right;">12-08</span>
-    </a>
-  
-    
-    <a href="/2020/12/08/hello/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title"></span>
-      <span style="float: right;">12-08</span>
-    </a>
-  
+<div class="page-content">
+  <p>My name is chenghuan </p>
+
 </div>
-
-
 
               </div>
             </div>
@@ -275,6 +260,21 @@
 
 
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 
