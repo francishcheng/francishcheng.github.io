@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>shell - FC</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+                shell
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-12-08 20:22">
+      2020年12月8日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="Pausing-and-backgrounding-processes"><a href="#Pausing-and-backgrounding-processes" class="headerlink" title="Pausing and backgrounding processes"></a>Pausing and backgrounding processes</h2><p>Signals can do other things beyond killing a process. For instance, <code>SIGSTOP</code> pauses a process. In the terminal, typing <code>Ctrl-Z</code> will prompt the shell to send a <code>SIGTSTP</code> signal, short for Terminal Stop (i.e. the terminal’s version of <code>SIGSTOP</code>).</p>
+<p>We can then continue the paused job in the foreground or in the background using <a target="_blank" rel="noopener" href="https://www.man7.org/linux/man-pages/man1/fg.1p.html"><code>fg</code></a> or <a target="_blank" rel="noopener" href="http://man7.org/linux/man-pages/man1/bg.1p.html"><code>bg</code></a>, respectively.</p>
+<pre><code class="hljs bash">$ sleep 1000
+^Z
+[1]  + 18653 suspended  sleep 1000
+
+$ nohup sleep 2000 &amp;
+[2] 18745
+appending output to nohup.out
+
+$ <span class="hljs-built_in">jobs</span>
+[1]  + suspended  sleep 1000
+[2]  - running    nohup sleep 2000
+
+$ <span class="hljs-built_in">bg</span> %1
+[1]  - 18653 continued  sleep 1000
+
+$ <span class="hljs-built_in">jobs</span>
+[1]  - running    sleep 1000
+[2]  + running    nohup sleep 2000
+
+$ <span class="hljs-built_in">kill</span> -STOP %1
+[1]  + 18653 suspended (signal)  sleep 1000
+
+$ <span class="hljs-built_in">jobs</span>
+[1]  + suspended (signal)  sleep 1000
+[2]  - running    nohup sleep 2000
+
+$ <span class="hljs-built_in">kill</span> -SIGHUP %1
+[1]  + 18653 hangup     sleep 1000
+
+$ <span class="hljs-built_in">jobs</span>
+[2]  + running    nohup sleep 2000
+
+$ <span class="hljs-built_in">kill</span> -SIGHUP %2
+
+$ <span class="hljs-built_in">jobs</span>
+[2]  + running    nohup sleep 2000
+
+$ <span class="hljs-built_in">kill</span> %2
+[2]  + 18745 terminated  nohup sleep 2000
+
+$ <span class="hljs-built_in">jobs</span></code></pre>
+
+<h1 id="Terminal-Multiplexers-Tmux"><a href="#Terminal-Multiplexers-Tmux" class="headerlink" title="Terminal Multiplexers(Tmux)"></a>Terminal Multiplexers(Tmux)</h1><ul>
+<li>Sessions</li>
+</ul>
+<p>  - a session is an independent workspace with one or more windows</p>
+<ul>
+<li><code>tmux</code> starts a new session.</li>
+<li><code>tmux new -s NAME</code> starts it with that name.</li>
+<li><code>tmux ls</code> lists the current sessions</li>
+<li>Within <code>tmux</code> typing <code> d</code> detaches the current session</li>
+<li><code>tmux a</code> attaches the last session. You can use <code>-t</code> flag to specify which</li>
+</ul>
+<ul>
+<li>Windows</li>
+</ul>
+<p>  - Equivalent to tabs in editors or browsers, they are visually separate parts of the same session</p>
+<ul>
+<li><code> c</code> Creates a new window. To close it you can just terminate the shells doing ``</li>
+<li><code> N</code> Go to the <em>N</em> th window. Note they are numbered</li>
+<li><code> p</code> Goes to the previous window</li>
+<li><code> n</code> Goes to the next window</li>
+<li><code> ,</code> Rename the current window</li>
+<li><code> w</code> List current windows</li>
+</ul>
+<ul>
+<li>Panes</li>
+</ul>
+<p>  - Like vim splits, panes let you have multiple shells in the same visual display.</p>
+<ul>
+<li><code> &quot;</code> Split the current pane horizontally</li>
+<li><code> %</code> Split the current pane vertically</li>
+<li><code> </code> Move to the pane in the specified <em>direction</em>. Direction here means arrow keys.</li>
+<li><code> z</code> Toggle zoom for the current pane</li>
+<li><code> [</code> Start scrollback. You can then press <code>to start a selection and</code> to copy that selection.</li>
+<li><code> </code> Cycle through pane arrangements.</li>
+</ul>
+<h1 id="Aliases"><a href="#Aliases" class="headerlink" title="Aliases"></a>Aliases</h1><p>It can become tiresome typing long commands that involve many flags or verbose options. For this reason, most shells support <em>aliasing</em>. A shell alias is a short form for another command that your shell will replace automatically for you. For instance, an alias in bash has the following structure:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">alias</span> alias_name=<span class="hljs-string">&quot;command_to_alias arg1 arg2&quot;</span></code></pre>
+
+<p>Note that there is no space around the equal sign <code>=</code>, because <a target="_blank" rel="noopener" href="https://www.man7.org/linux/man-pages/man1/alias.1p.html"><code>alias</code></a> is a shell command that takes a single argument.</p>
+<p>Aliases have many convenient features:</p>
+<pre><code class="hljs bash"><span class="hljs-comment"># Make shorthands for common flags</span>
+<span class="hljs-built_in">alias</span> ll=<span class="hljs-string">&quot;ls -lh&quot;</span>
+
+<span class="hljs-comment"># Save a lot of typing for common commands</span>
+<span class="hljs-built_in">alias</span> gs=<span class="hljs-string">&quot;git status&quot;</span>
+<span class="hljs-built_in">alias</span> gc=<span class="hljs-string">&quot;git commit&quot;</span>
+<span class="hljs-built_in">alias</span> v=<span class="hljs-string">&quot;vim&quot;</span>
+
+<span class="hljs-comment"># Save you from mistyping</span>
+<span class="hljs-built_in">alias</span> sl=ls
+
+<span class="hljs-comment"># Overwrite existing commands for better defaults</span>
+<span class="hljs-built_in">alias</span> mv=<span class="hljs-string">&quot;mv -i&quot;</span>           <span class="hljs-comment"># -i prompts before overwrite</span>
+<span class="hljs-built_in">alias</span> mkdir=<span class="hljs-string">&quot;mkdir -p&quot;</span>     <span class="hljs-comment"># -p make parent dirs as needed</span>
+<span class="hljs-built_in">alias</span> df=<span class="hljs-string">&quot;df -h&quot;</span>           <span class="hljs-comment"># -h prints human readable format</span>
+
+<span class="hljs-comment"># Alias can be composed</span>
+<span class="hljs-built_in">alias</span> la=<span class="hljs-string">&quot;ls -A&quot;</span>
+<span class="hljs-built_in">alias</span> lla=<span class="hljs-string">&quot;la -l&quot;</span>
+
+<span class="hljs-comment"># To ignore an alias run it prepended with \</span>
+\ls
+<span class="hljs-comment"># Or disable an alias altogether with unalias</span>
+<span class="hljs-built_in">unalias</span> la
+
+<span class="hljs-comment"># To get an alias definition just call it with alias</span>
+<span class="hljs-built_in">alias</span> ll
+<span class="hljs-comment"># Will print ll=&#x27;ls -lh&#x27;</span></code></pre>
+
+<h1 id="Remote-Machines"><a href="#Remote-Machines" class="headerlink" title="Remote Machines"></a>Remote Machines</h1><p>It has become more and more common for programmers to use remote servers in their everyday work. If you need to use remote servers in order to deploy backend software or you need a server with higher computational capabilities, you will end up using a Secure Shell (SSH). As with most tools covered, SSH is highly configurable so it is worth learning about it.</p>
+<p>To <code>ssh</code> into a server you execute a command as follows</p>
+<pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> foo<span class="hljs-variable">@bar</span>.mit.edu</code></pre>
+
+<p>Here we are trying to ssh as user <code>foo</code> in server <code>bar.mit.edu</code>. The server can be specified with a URL (like <code>bar.mit.edu</code>) or an IP (something like <code>foobar@192.168.1.42</code>). Later we will see that if we modify ssh config file you can access just using something like <code>ssh bar</code>.</p>
+<h2 id="Executing-commands"><a href="#Executing-commands" class="headerlink" title="Executing commands"></a>Executing commands</h2><p>An often overlooked feature of <code>ssh</code> is the ability to run commands directly. <code>ssh foobar@server ls</code> will execute <code>ls</code> in the home folder of foobar. It works with pipes, so <code>ssh foobar@server ls | grep PATTERN</code> will grep locally the remote output of <code>ls</code> and <code>ls | ssh foobar@server grep PATTERN</code> will grep remotely the local output of <code>ls</code>.</p>
+<h2 id="SSH-Keys"><a href="#SSH-Keys" class="headerlink" title="SSH Keys"></a>SSH Keys</h2><p>Key-based authentication exploits public-key cryptography to prove to the server that the client owns the secret private key without revealing the key. This way you do not need to reenter your password every time. Nevertheless, the private key (often <code>~/.ssh/id_rsa</code> and more recently <code>~/.ssh/id_ed25519</code>) is effectively your password, so treat it like so.</p>
+<h3 id="Key-generation"><a href="#Key-generation" class="headerlink" title="Key generation"></a>Key generation</h3><p>To generate a pair you can run <a target="_blank" rel="noopener" href="https://www.man7.org/linux/man-pages/man1/ssh-keygen.1.html"><code>ssh-keygen</code></a>.</p>
+<pre><code class="hljs apache"><span class="hljs-attribute">ssh</span>-keygen -o -a <span class="hljs-number">100</span> -t ed<span class="hljs-number">25519</span> -f ~/.ssh/id_ed<span class="hljs-number">25519</span></code></pre>
+
+<p>You should choose a passphrase, to avoid someone who gets hold of your private key to access authorized servers. Use <a target="_blank" rel="noopener" href="https://www.man7.org/linux/man-pages/man1/ssh-agent.1.html"><code>ssh-agent</code></a> or <a target="_blank" rel="noopener" href="https://linux.die.net/man/1/gpg-agent"><code>gpg-agent</code></a> so you do not have to type your passphrase every time.</p>
+<p>If you have ever configured pushing to GitHub using SSH keys, then you have probably done the steps outlined <a target="_blank" rel="noopener" href="https://help.github.com/articles/connecting-to-github-with-ssh/">here</a> and have a valid key pair already. To check if you have a passphrase and validate it you can run <code>ssh-keygen -y -f /path/to/key</code>.</p>
+<h3 id="Key-based-authentication"><a href="#Key-based-authentication" class="headerlink" title="Key based authentication"></a>Key based authentication</h3><p><code>ssh</code> will look into <code>.ssh/authorized_keys</code> to determine which clients it should let in. To copy a public key over you can use:</p>
+<pre><code class="hljs nginx"><span class="hljs-attribute">cat</span> .ssh/id_ed25519.pub | ssh foobar<span class="hljs-variable">@remote</span> <span class="hljs-string">&#x27;cat &gt;&gt; ~/.ssh/authorized_keys&#x27;</span></code></pre>
+
+<p>A simpler solution can be achieved with <code>ssh-copy-id</code> where available:</p>
+<pre><code class="hljs applescript">ssh-<span class="hljs-keyword">copy</span>-<span class="hljs-built_in">id</span> -i .ssh/id_ed25519.pub foobar@remote</code></pre>
+
+<h2 id="Copying-files-over-SSH"><a href="#Copying-files-over-SSH" class="headerlink" title="Copying files over SSH"></a>Copying files over SSH</h2><p>There are many ways to copy files over ssh:</p>
+<ul>
+<li><code>ssh+tee</code>, the simplest is to use <code>ssh</code> command execution and STDIN input by doing <code>cat localfile | ssh remote_server tee serverfile</code>. Recall that <a target="_blank" rel="noopener" href="https://www.man7.org/linux/man-pages/man1/tee.1.html"><code>tee</code></a> writes the output from STDIN into a file.</li>
+<li><a target="_blank" rel="noopener" href="https://www.man7.org/linux/man-pages/man1/scp.1.html"><code>scp</code></a> when copying large amounts of files/directories, the secure copy <code>scp</code> command is more convenient since it can easily recurse over paths. The syntax is <code>scp path/to/local_file remote_host:path/to/remote_file</code></li>
+<li><a target="_blank" rel="noopener" href="https://www.man7.org/linux/man-pages/man1/rsync.1.html"><code>rsync</code></a> improves upon <code>scp</code> by detecting identical files in local and remote, and preventing copying them again. It also provides more fine grained control over symlinks, permissions and has extra features like the <code>--partial</code> flag that can resume from a previously interrupted copy. <code>rsync</code> has a similar syntax to <code>scp</code>.</li>
+</ul>
+<h2 id="SSH-Configuration"><a href="#SSH-Configuration" class="headerlink" title="SSH Configuration"></a>SSH Configuration</h2><p>We have covered many many arguments that we can pass. A tempting alternative is to create shell aliases that look like</p>
+<pre><code class="hljs monkey"><span class="hljs-keyword">alias</span> <span class="hljs-title">my_server</span>=<span class="hljs-string">&quot;ssh -i ~/.id_ed25519 --port 2222 -L 9999:localhost:8888 foobar@remote_server</span></code></pre>
+
+<p>However, there is a better alternative using <code>~/.ssh/config</code>.</p>
+<pre><code class="hljs routeros">Host vm
+   <span class="hljs-built_in"> User </span>foobar
+    HostName 172.16.174.141
+   <span class="hljs-built_in"> Port </span>2222
+    IdentityFile ~/.ssh/id_ed25519
+    LocalForward 9999 localhost:8888
+
+<span class="hljs-comment"># Configs can also take wildcards</span>
+Host *.mit.edu
+   <span class="hljs-built_in"> User </span>foobaz</code></pre>
+
+<p>An additional advantage of using the <code>~/.ssh/config</code> file over aliases is that other programs like <code>scp</code>, <code>rsync</code>, <code>mosh</code>, &amp;c are able to read it as well and convert the settings into the corresponding flags.</p>
+<p>Note that the <code>~/.ssh/config</code> file can be considered a dotfile, and in general it is fine for it to be included with the rest of your dotfiles. However, if you make it public, think about the information that you are potentially providing strangers on the internet: addresses of your servers, users, open ports, &amp;c. This may facilitate some types of attacks so be thoughtful about sharing your SSH configuration.</p>
+<p>Server side configuration is usually specified in <code>/etc/ssh/sshd_config</code>. Here you can make changes like disabling password authentication, changing ssh ports, enabling X11 forwarding, &amp;c. You can specify config settings on a per user basis.</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/missing/">missing</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/08/missing/Shell%20Tools%20and%20Scripting/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Shell Tools and Scripting</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/08/missing/Git/">
+                        <span class="hidden-mobile">Git</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
