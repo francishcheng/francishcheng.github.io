@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      105 字
+      201 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      3
        分钟
     </span>
   
@@ -219,6 +219,22 @@ client.close()</code></pre>
 
 <h2 id="在mongodb中查询大于-小于某个时间点的数据"><a href="#在mongodb中查询大于-小于某个时间点的数据" class="headerlink" title="在mongodb中查询大于/小于某个时间点的数据"></a>在mongodb中查询大于/小于某个时间点的数据</h2><pre><code class="hljs apache"><span class="hljs-attribute">documents</span> = collection.find(&#123;<span class="hljs-string">&quot;date&quot;</span>: &#123;<span class="hljs-string">&quot;$lt&quot;</span>: datetime(<span class="hljs-number">2019</span>, <span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">15</span>,<span class="hljs-number">40</span>,<span class="hljs-number">3</span>)&#125;&#125;).sort(&#x27;date&#x27;)</code></pre>
 
+<h2 id="python-打包pandas文件"><a href="#python-打包pandas文件" class="headerlink" title="python 打包pandas文件"></a>python 打包pandas文件</h2><ol>
+<li><p>首先第一次进行打包，会在py目录下生成spec文件，是一个打包脚本</p>
+</li>
+<li><p>编辑其内容。添加隐藏的包</p>
+<pre><code class="hljs python">hiddenimports=[ <span class="hljs-string">&#x27;pandas&#x27;</span>, <span class="hljs-string">&#x27;numpy&#x27;</span> ]</code></pre>
+</li>
+<li><p>如果遇到 recursion limit 错误, 在spec文件中添加如下两行</p>
+</li>
+</ol>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> sys
+sys.setrecursionlimit(<span class="hljs-number">2000000</span></code></pre>
+
+<h2 id="Python-datetime-格式化"><a href="#Python-datetime-格式化" class="headerlink" title="Python datetime 格式化"></a>Python datetime 格式化</h2><pre><code class="hljs python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime
+now = datetime.now()
+now.strftime(<span class="hljs-string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</code></pre>
+
 
             </article>
             <hr>
@@ -253,7 +269,7 @@ client.close()</code></pre>
                     
                     
                       <a href="/2020/12/08/missing/Command-line%20Environment/">
-                        <span class="hidden-mobile">Shell</span>
+                        <span class="hidden-mobile">Command-line Environment</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

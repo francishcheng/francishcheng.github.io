@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Shell - FC</title>
+  <title>Command-line Environment - FC</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -146,7 +146,7 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                Shell
+                Command-line Environment
               
             </span>
 
@@ -280,12 +280,19 @@ $ <span class="hljs-built_in">jobs</span></code></pre>
 <ul>
 <li><code> &quot;</code> Split the current pane horizontally</li>
 <li><code> %</code> Split the current pane vertically</li>
-<li><code> </code> Move to the pane in the specified <em>direction</em>. Direction here means arrow keys.</li>
+<li><code> 方向键</code> Move to the pane in the specified <em>direction</em>. Direction here means arrow keys.</li>
 <li><code> z</code> Toggle zoom for the current pane</li>
 <li><code> [</code> Start scrollback. You can then press <code>to start a selection and</code> to copy that selection.</li>
-<li><code> </code> Cycle through pane arrangements.</li>
+<li><code> x</code> kill pane </li>
 </ul>
-<h1 id="Aliases"><a href="#Aliases" class="headerlink" title="Aliases"></a>Aliases</h1><p>It can become tiresome typing long commands that involve many flags or verbose options. For this reason, most shells support <em>aliasing</em>. A shell alias is a short form for another command that your shell will replace automatically for you. For instance, an alias in bash has the following structure:</p>
+<ul>
+<li>Tab<ul>
+<li><code>c</code> create tab </li>
+<li><code>n</code> 、<code>p&#39;</code>  、 <code>l</code>  switch <h1 id="Aliases"><a href="#Aliases" class="headerlink" title="Aliases"></a>Aliases</h1></li>
+</ul>
+</li>
+</ul>
+<p>It can become tiresome typing long commands that involve many flags or verbose options. For this reason, most shells support <em>aliasing</em>. A shell alias is a short form for another command that your shell will replace automatically for you. For instance, an alias in bash has the following structure:</p>
 <pre><code class="hljs bash"><span class="hljs-built_in">alias</span> alias_name=<span class="hljs-string">&quot;command_to_alias arg1 arg2&quot;</span></code></pre>
 
 <p>Note that there is no space around the equal sign <code>=</code>, because <a target="_blank" rel="noopener" href="https://www.man7.org/linux/man-pages/man1/alias.1p.html"><code>alias</code></a> is a shell command that takes a single argument.</p>
@@ -394,8 +401,8 @@ Host *.mit.edu
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/12/08/missing/Git/">
-                        <span class="hidden-mobile">Git</span>
+                      <a href="/2020/12/08/missing/Shell/">
+                        <span class="hidden-mobile">Shell</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
