@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>vue - FC</title>
+  <title>decision_tree - FC</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -146,7 +146,7 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                vue
+                decision_tree
               
             </span>
 
@@ -154,8 +154,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2021-02-28 16:28">
-      2021年2月28日 下午
+    <time datetime="2021-03-26 10:57">
+      2021年3月26日 上午
     </time>
   </div>
 
@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      129 字
+      377 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        分钟
     </span>
   
@@ -206,48 +206,19 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="解决跨域问题"><a href="#解决跨域问题" class="headerlink" title="解决跨域问题"></a>解决跨域问题</h2><h3 id="开发时"><a href="#开发时" class="headerlink" title="开发时"></a>开发时</h3><p>在<code>vue.config.js</code>中添加devServer</p>
-<pre><code class="hljs js">devServer:&#123;
-        port: <span class="hljs-number">8888</span>,
-        host: <span class="hljs-string">&#x27;localhost&#x27;</span>,
-        https: <span class="hljs-literal">false</span>,
-        open: <span class="hljs-literal">true</span>,
-        proxy:&#123;
+              <h2 id="Pros-and-Cons"><a href="#Pros-and-Cons" class="headerlink" title="Pros and Cons"></a>Pros and Cons</h2><p>Pros</p>
+<ul>
+<li>非黑盒 </li>
+<li>轻松去除无关Attribute （Gain = 0） </li>
+<li>Test起来很快 （O(depth)）</li>
+</ul>
+<p>Cons</p>
+<ul>
+<li>只能线性分割数据</li>
+<li>贪婪算法（可能找不到最好的树)</li>
+</ul>
+<h2 id="信息熵、信息增益、信息增益率"><a href="#信息熵、信息增益、信息增益率" class="headerlink" title="信息熵、信息增益、信息增益率"></a>信息熵、信息增益、信息增益率</h2><h3 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h3><p>信息熵是用来评估样本集合的纯度的一个参数，就是说，给出一个样本集合，这个样本集合中的样本可能属于好多不同的类别，也可能只属于一个类别，那么如果属于好多不同的类别的话，我们就说这个样本是不纯的，如果只属于一个类别，那么，我们就说这个样本是纯洁的。<br>　　而信息熵这个东西就是来计算一个样本集合中的数据是纯洁的还是不纯洁的。下面上公式：<br>$$<br>Ent(D)=−∑_{k=1}^{y}p_klog_2p_k<br>$$<br>下面解释一下公式的意思，其实很好理解，计算一个集合的纯度，就是把集合中每一个类别所占的比例p k p_k<em>p**k</em>（k从1到 ∣ y ∣ \left | y \right |∣<em>y</em>∣，其中 ∣ y ∣ \left | y \right |∣<em>y</em>∣ 表示类别的个数）乘上它的对数，然后加到一起，然后经过计算之后，可以得到一个数据集的信息熵，然后根据信息熵，可以判断这个数据集是否纯粹。信息熵越小的话，表明这个数据集越纯粹。信息熵的最小值为0，此时数据集D中只含有一个类别。</p>
 
-        <span class="hljs-string">&#x27;/dev&#x27;</span>: &#123;
-                target: <span class="hljs-string">&quot;http://58.87.111.39:9999&quot;</span>,
-                changeOrigin: <span class="hljs-literal">true</span>,
-                pathRewrite:&#123;
-                    <span class="hljs-string">&#x27;^/dev&#x27;</span>: <span class="hljs-string">&#x27;&#x27;</span>,
-                &#125;
-            &#125;
-        &#125;</code></pre>
-
-<h3 id="生产时"><a href="#生产时" class="headerlink" title="生产时"></a>生产时</h3><p>在<code>nginx</code>中设置<code>proxy_pass</code></p>
-<pre><code class="hljs config">location &#x2F;dev&#x2F; &#123;
-                proxy_pass http:&#x2F;&#x2F;58.87.111.39:9999&#x2F;;
-        &#125;
-</code></pre>
-
-<h3 id="构建（build）环节"><a href="#构建（build）环节" class="headerlink" title="构建（build）环节"></a>构建（build）环节</h3><p>加上publicPath: ‘./‘</p>
-<pre><code class="hljs js">devServer:&#123;
-        port: <span class="hljs-number">8888</span>,
-        publicPath: <span class="hljs-string">&#x27;./&#x27;</span>,
-        host: <span class="hljs-string">&#x27;localhost&#x27;</span>,
-        https: <span class="hljs-literal">false</span>,
-        open: <span class="hljs-literal">true</span>,
-        proxy:&#123;
-
-        <span class="hljs-string">&#x27;/dev&#x27;</span>: &#123;
-                target: <span class="hljs-string">&quot;http://58.87.111.39:9999&quot;</span>,
-                changeOrigin: <span class="hljs-literal">true</span>,
-                pathRewrite:&#123;
-                    <span class="hljs-string">&#x27;^/dev&#x27;</span>: <span class="hljs-string">&#x27;&#x27;</span>,
-                &#125;
-            &#125;
-        &#125;</code></pre>
-
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
             </article>
             <hr>
             <div>
@@ -257,7 +228,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/vue/">vue</a>
+                      <a class="hover-with-bg" href="/tags/machine-learning/">machine learning</a>
                     
                   </div>
                 
@@ -270,9 +241,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2021/03/26/decision-tree/">
+                      <a href="/2021/03/31/pandas/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">decision_tree</span>
+                        <span class="hidden-mobile">pandas</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -280,8 +251,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/12/13/vim/">
-                        <span class="hidden-mobile">Vim</span>
+                      <a href="/2021/02/28/vue/">
+                        <span class="hidden-mobile">vue</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

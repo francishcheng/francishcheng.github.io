@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>numpy - FC</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+                numpy
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-03-31 16:29">
+      2021年3月31日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="数组构造"><a href="#数组构造" class="headerlink" title="数组构造"></a>数组构造</h2><h3 id="特殊矩阵"><a href="#特殊矩阵" class="headerlink" title="特殊矩阵"></a>特殊矩阵</h3><p>In [31]: np.linspace(1,5,11) # 起始、终止（包含）、样本个数 </p>
+<p>Out[31]: array([1. , 1.4, 1.8, 2.2, 2.6, 3. , 3.4, 3.8, 4.2, 4.6, 5. ])</p>
+<p>In [32]: np.arange(1,5,2) # 起始、终止（不包含）、步长 </p>
+<p>Out[32]: array([1, 3])</p>
+<p>In [33]: np.zeros((2,3)) # 传入元组表示各维度大小 </p>
+<p>Out[33]: array([[0., 0., 0.], [0., 0., 0.]])</p>
+<p>In [34]: np.eye(3) # 3*3 的单位矩阵</p>
+<p>Out[34]: array([[1., 0., 0.], [0., 1., 0.], [0., 0., 1.]])</p>
+<p>In [35]: np.eye(3, k=1) # 偏移主对角线 1 个单位的伪单位矩阵 </p>
+<p>Out[35]: array([[0., 1., 0.], [0., 0., 1.], [0., 0., 0.]])</p>
+<p>In [36]: np.full((2,3), 10) # 元组传入大小，10 表示填充数值 </p>
+<p>Out[36]: array([[10, 10, 10], [10, 10, 10]])</p>
+<p>In [37]: np.full((2,3), [1,2,3]) # 通过传入列表填充每列的值 </p>
+<p>Out[37]: array([[1, 2, 3], [1, 2, 3]])</p>
+<h3 id="随机矩阵"><a href="#随机矩阵" class="headerlink" title="随机矩阵"></a>随机矩阵</h3><p>随机矩阵：np.random 最常用的随机生成函数为 rand, randn, randint, choice ，它们分别表示 0-1 均匀分布的随机数组、标准正态 的随机数组、随机整数组和随机列表抽样：</p>
+<p>对于服从区间 a 到 b 上的均匀分布可以如下生成：</p>
+<pre><code class="hljs python">a, b = <span class="hljs-number">5</span>, <span class="hljs-number">15</span>
+(b - a) * np.random.rand(<span class="hljs-number">3</span>) + a</code></pre>
+
+<p> array([ 7.81852712, 13.73446249, 9.55726572])</p>
+<p>randn 生成了 N(0,I) 的标准正态分布：</p>
+<pre><code class="hljs apache"><span class="hljs-attribute">np</span>.random.randn(<span class="hljs-number">3</span>)
+<span class="hljs-attribute">array</span>([-<span class="hljs-number">0</span>.<span class="hljs-number">66241809</span>, -<span class="hljs-number">0</span>.<span class="hljs-number">43323251</span>, -<span class="hljs-number">0</span>.<span class="hljs-number">2569318</span> ])</code></pre>
+
+
+
+<p>对于服从方差为 σ2 均值为 µ 的一元正态分布可以如下生成：</p>
+<pre><code class="hljs python">sigma, mu = <span class="hljs-number">2.5</span>, <span class="hljs-number">3</span>
+mu + np.random.randn(<span class="hljs-number">3</span>) * sigma 
+Out[<span class="hljs-number">45</span>]: array([<span class="hljs-number">3.35284376</span>, <span class="hljs-number">0.04422116</span>, <span class="hljs-number">3.50676044</span></code></pre>
+
+
+
+<p>randint 可以指定生成随机整数的最小值最大值和维度大小：</p>
+<pre><code class="hljs python">low, high, size = <span class="hljs-number">5</span>, <span class="hljs-number">15</span>, (<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)
+np.random.randint(low, high, size) 
+Out[<span class="hljs-number">47</span>]: array([[<span class="hljs-number">12</span>, <span class="hljs-number">14</span>], [ <span class="hljs-number">6</span>, <span class="hljs-number">13</span>]])</code></pre>
+
+<p>choice 可以从给定的列表中，以一定概率和方式抽取结果，当不指定概率时为均匀采样，默认抽取方式为有 放回抽样：</p>
+<pre><code class="hljs python">my_list = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>]
+np.random.choice(my_list, <span class="hljs-number">2</span>, replace=<span class="hljs-literal">False</span>, p=[<span class="hljs-number">0.1</span>, <span class="hljs-number">0.7</span>, <span class="hljs-number">0.1</span> ,<span class="hljs-number">0.1</span>]) 
+Out[<span class="hljs-number">49</span>]: array([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>], dtype=<span class="hljs-string">&#x27;&lt;U1&#x27;</span>)</code></pre>
+
+<pre><code class="hljs prolog">np.random.choice(my_list, (<span class="hljs-number">3</span>,<span class="hljs-number">3</span>)) 
+<span class="hljs-symbol">Out</span>[<span class="hljs-number">50</span>]: array([[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>], [<span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>], [<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]], dtype=<span class="hljs-string">&#x27;&lt;U1&#x27;</span>)</code></pre>
+
+<p> 可以看到当返回的元素个数与原列表相同时，等价于使用 permutation 函数，即打散原列表：</p>
+<pre><code class="hljs python">np.random.permutation(my_list) 
+Out[<span class="hljs-number">51</span>]: array([<span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>], dtype=<span class="hljs-string">&#x27;&lt;U1&#x27;</span>)</code></pre>
+
+<h2 id="np-数组的变形与合并"><a href="#np-数组的变形与合并" class="headerlink" title="np 数组的变形与合并"></a>np 数组的变形与合并</h2><h3 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h3><p>合并操作：r_, c_ 对于二维数组而言，r_ 和 c_ 分别表示上下合并和左右合并：</p>
+<pre><code class="hljs python">np.r_[np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))
+Out[<span class="hljs-number">57</span>]: array([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])</code></pre>
+
+<pre><code class="hljs angelscript">np.c_[np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)),np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>))] Out[<span class="hljs-number">58</span>]: <span class="hljs-built_in">array</span>([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])
+</code></pre>
+
+<h3 id="维度变换-reshape"><a href="#维度变换-reshape" class="headerlink" title="维度变换 reshape"></a>维度变换 reshape</h3><p>reshape 能够帮助用户把原数组按照新的维度重新排列。在使用时有两种模式，分别为 <strong>C 模式</strong>和 <strong>F 模式</strong>，分 别以逐行和逐列的顺序进行填充读取。</p>
+<pre><code class="hljs angelscript">target = np.arange(<span class="hljs-number">8</span>).reshape(<span class="hljs-number">2</span>,<span class="hljs-number">4</span>)
+Out[<span class="hljs-number">64</span>]: <span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>]])</code></pre>
+
+<pre><code class="hljs angelscript">target.reshape((<span class="hljs-number">4</span>,<span class="hljs-number">2</span>), order=<span class="hljs-string">&#x27;C&#x27;</span>) # 按照行读取和填充 
+Out[<span class="hljs-number">65</span>]: <span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>],[<span class="hljs-number">6</span>, <span class="hljs-number">7</span>]])</code></pre>
+
+<pre><code class="hljs angelscript">target.reshape((<span class="hljs-number">4</span>,<span class="hljs-number">2</span>), order=<span class="hljs-string">&#x27;F&#x27;</span>) # 按照列读取和填充 
+Out[<span class="hljs-number">66</span>]: <span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">2</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">6</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">5</span>, <span class="hljs-number">7</span>]])</code></pre>
+
+<p>特别地，由于被调用数组的大小是确定的，reshape 允许有一个维度存在空缺，此时只需填充-1 即可：</p>
+<pre><code class="hljs angelscript">target.reshape((<span class="hljs-number">4</span>,<span class="hljs-number">-1</span>)) 
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>], [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>], [<span class="hljs-number">6</span>, <span class="hljs-number">7</span>]])</code></pre>
+
+<p>下面将 n*1 大小的数组转为 1 维数组的操作是经常使用的：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">68</span>]: target = np.ones((<span class="hljs-number">3</span>,<span class="hljs-number">1</span>))
+In [<span class="hljs-number">69</span>]: target Out[<span class="hljs-number">69</span>]: <span class="hljs-built_in">array</span>([[<span class="hljs-number">1.</span>], [<span class="hljs-number">1.</span>], [<span class="hljs-number">1.</span>]])
+In [<span class="hljs-number">70</span>]: target.reshape(<span class="hljs-number">-1</span>) Out[<span class="hljs-number">70</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>])</code></pre>
+
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><h3 id="where"><a href="#where" class="headerlink" title="where"></a>where</h3><p>where 是一种条件函数，可以指定满足条件与不满足条件位置对应的填充值</p>
+<pre><code class="hljs python">a = np.array([<span class="hljs-number">-1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>])
+np.where(a&gt;<span class="hljs-number">0</span>, a, <span class="hljs-number">5</span>) <span class="hljs-comment"># 对应位置为 True 时填充 a 对应元素，否则填充 </span>
+Out[<span class="hljs-number">79</span>]: array([<span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">5</span>])
+</code></pre>
+
+<h3 id="nonzero-argmax-argmin"><a href="#nonzero-argmax-argmin" class="headerlink" title="nonzero, argmax, argmin"></a>nonzero, argmax, argmin</h3><p>这三个函数返回的都是索引，nonzero 返回非零数的索引，argmax, argmin 分别返回最大和最小数的索引：</p>
+<pre><code class="hljs python">In [<span class="hljs-number">80</span>]: a = np.array([<span class="hljs-number">-2</span>,<span class="hljs-number">-5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">-1</span>])
+In [<span class="hljs-number">81</span>]: np.nonzero(a) 
+Out[<span class="hljs-number">81</span>]: (array([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>], dtype=int64),)
+In [<span class="hljs-number">82</span>]: a.argmax() 
+Out[<span class="hljs-number">82</span>]: <span class="hljs-number">4</span>
+In [<span class="hljs-number">83</span>]: a.argmin() 
+Out[<span class="hljs-number">83</span>]: <span class="hljs-number">1</span></code></pre>
+
+<h3 id="cumprod-cumsum-diff"><a href="#cumprod-cumsum-diff" class="headerlink" title="cumprod, cumsum, diff"></a>cumprod, cumsum, diff</h3><p>cumprod, cumsum 分别表示累乘和累加函数，返回同长度的数组，diff 表示和前一个元素做差，由于第一个 元素为缺失值，因此在默认参数情况下，返回长度是原数组减 1</p>
+<pre><code class="hljs PYTHON">In [<span class="hljs-number">87</span>]: a = np.array([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+In [<span class="hljs-number">88</span>]: a.cumprod() 
+Out[<span class="hljs-number">88</span>]: array([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>], dtype=int32)
+
+In [<span class="hljs-number">89</span>]: a.cumsum() 
+Out[<span class="hljs-number">89</span>]: array([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>], dtype=int32)
+
+In [<span class="hljs-number">90</span>]: np.diff(a) 
+Out[<span class="hljs-number">90</span>]: array([<span class="hljs-number">1</span>, <span class="hljs-number">1</span>])</code></pre>
+
+<h3 id="统计函数"><a href="#统计函数" class="headerlink" title="统计函数"></a>统计函数</h3><p>常用的统计函数包括 max, min, mean, median, std, var, sum, quantile ，其中分位数计算是全局方法，因此 不能通过 array.quantile 的方法调用：</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">91</span>]: target = np.arange(<span class="hljs-number">5</span>)
+In [<span class="hljs-number">92</span>]: target 
+Out[<span class="hljs-number">92</span>]: <span class="hljs-built_in">array</span>([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+In [<span class="hljs-number">93</span>]: target.max() 
+Out[<span class="hljs-number">93</span>]: <span class="hljs-number">4</span>
+In [<span class="hljs-number">94</span>]: np.quantile(target, <span class="hljs-number">0.5</span>) # <span class="hljs-number">0.5</span> 分位数 
+Out[<span class="hljs-number">94</span>]: <span class="hljs-number">2.0</span>
+</code></pre>
+<p>但是对于含有缺失值的数组，它们返回的结果也是缺失值，如果需要略过缺失值，必须使用 nan* 类型的函 数，上述的几个统计函数都有对应的 nan* 函数</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">95</span>]: target = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, np.nan])
+In [<span class="hljs-number">96</span>]: target 
+Out[<span class="hljs-number">96</span>]: <span class="hljs-built_in">array</span>([ <span class="hljs-number">1.</span>, <span class="hljs-number">2.</span>, nan])
+In [<span class="hljs-number">97</span>]: target.max() 
+Out[<span class="hljs-number">97</span>]: nan
+In [<span class="hljs-number">98</span>]: np.nanmax(target) 
+Out[<span class="hljs-number">98</span>]: <span class="hljs-number">2.0</span>
+In [<span class="hljs-number">99</span>]: np.nanquantile(target, <span class="hljs-number">0.5</span>) 
+Out[<span class="hljs-number">99</span>]: <span class="hljs-number">1.5</span>
+</code></pre>
+
+<p>对于协方差和相关系数分别可以利用 cov, corrcoef 如下计算</p>
+<pre><code class="hljs angelscript">In [<span class="hljs-number">100</span>]: target1 = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">9</span>])
+In [<span class="hljs-number">101</span>]: target2 = np.<span class="hljs-built_in">array</span>([<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">3</span>,<span class="hljs-number">-9</span>])
+In [<span class="hljs-number">102</span>]: np.cov(target1, target2)
+Out[<span class="hljs-number">102</span>]:
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">11.66666667</span>, <span class="hljs-number">-16.66666667</span>],
+[<span class="hljs-number">-16.66666667</span>, <span class="hljs-number">38.66666667</span>]])
+In [<span class="hljs-number">103</span>]: np.corrcoef(target1, target2)
+Out[<span class="hljs-number">103</span>]:
+<span class="hljs-built_in">array</span>([[ <span class="hljs-number">1.</span> , <span class="hljs-number">-0.78470603</span>],
+[<span class="hljs-number">-0.78470603</span>, <span class="hljs-number">1.</span> ]])</code></pre>
+
+<h3 id="向量范数和矩阵范数：np-linalg-norm"><a href="#向量范数和矩阵范数：np-linalg-norm" class="headerlink" title="向量范数和矩阵范数：np.linalg.norm"></a>向量范数和矩阵范数：np.linalg.norm</h3><h3 id="矩阵乘法："><a href="#矩阵乘法：" class="headerlink" title="矩阵乘法：@"></a>矩阵乘法：@</h3><pre><code class="hljs python">In [<span class="hljs-number">133</span>]: a = np.arange(<span class="hljs-number">4</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">2</span>)
+In [<span class="hljs-number">134</span>]: a
+Out[<span class="hljs-number">134</span>]:
+array([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>],
+[<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]])
+In [<span class="hljs-number">135</span>]: b = np.arange(<span class="hljs-number">-4</span>,<span class="hljs-number">0</span>).reshape(<span class="hljs-number">-1</span>,<span class="hljs-number">2</span>)
+In [<span class="hljs-number">136</span>]: b
+Out[<span class="hljs-number">136</span>]:
+array([[<span class="hljs-number">-4</span>, <span class="hljs-number">-3</span>],
+[<span class="hljs-number">-2</span>, <span class="hljs-number">-1</span>]])
+In [<span class="hljs-number">137</span>]: a@b
+Out[<span class="hljs-number">137</span>]:
+array([[ <span class="hljs-number">-2</span>, <span class="hljs-number">-1</span>],
+[<span class="hljs-number">-14</span>, <span class="hljs-number">-9</span>]])</code></pre>
+
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/31/pandas/">
+                        <span class="hidden-mobile">pandas</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
