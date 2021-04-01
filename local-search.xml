@@ -144,6 +144,25 @@
   
   
   <entry>
+    <title>Shell</title>
+    <link href="/2020/12/08/missing/Shell/"/>
+    <url>/2020/12/08/missing/Shell/</url>
+    
+    <content type="html"><![CDATA[<h2 id="在程序间创建连接"><a href="#在程序间创建连接" class="headerlink" title="在程序间创建连接"></a>在程序间创建连接</h2><p>信息的流动称为<strong>流</strong>，程序中存在两个流。</p><p>流入程序的称为<strong>输入流</strong>，流出的则称为<strong>输出流</strong>。</p><p>程序读取信息时会从输入流中进行读取，相反打印信息时则是输出到输出流中。</p><p>例如重定向 &gt; 可以将程序的输入流和输出流分别重定向到文件中。</p><blockquote><p>最简单的重定向是 &lt; file 和 &gt; file。这两个命令可以将程序的输入输出流分别重定向到文件：</p></blockquote><pre><code class="hljs sh">$ <span class="hljs-built_in">echo</span> hello &gt; hello.txt$ cat hello.txthello$ cat &lt; hello.txt &gt; hello2.txt$ cat hello2.txthello</code></pre><p>&gt;&gt; 表示追加内容(append)。</p><pre><code class="hljs sh">$ cat hello.txthello$ <span class="hljs-built_in">echo</span> hello &gt;&gt; hello.txt$ cat hello.txthellohello</code></pre><blockquote><p>使用管道（ pipes ），我们能够更好的利用文件重定向。 |操作符允许我们将一个程序的输出和另外一个程序的输入连接起来。</p></blockquote><p>管道线的用法实例。 </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>missing</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Shell Tools and Scripting</title>
     <link href="/2020/12/08/missing/Shell%20Scripting/"/>
     <url>/2020/12/08/missing/Shell%20Scripting/</url>
@@ -163,25 +182,6 @@
       <tag>sdfds</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Shell</title>
-    <link href="/2020/12/08/missing/Shell/"/>
-    <url>/2020/12/08/missing/Shell/</url>
-    
-    <content type="html"><![CDATA[<h2 id="在程序间创建连接"><a href="#在程序间创建连接" class="headerlink" title="在程序间创建连接"></a>在程序间创建连接</h2><p>信息的流动称为<strong>流</strong>，程序中存在两个流。</p><p>流入程序的称为<strong>输入流</strong>，流出的则称为<strong>输出流</strong>。</p><p>程序读取信息时会从输入流中进行读取，相反打印信息时则是输出到输出流中。</p><p>例如重定向 &gt; 可以将程序的输入流和输出流分别重定向到文件中。</p><blockquote><p>最简单的重定向是 &lt; file 和 &gt; file。这两个命令可以将程序的输入输出流分别重定向到文件：</p></blockquote><pre><code class="hljs sh">$ <span class="hljs-built_in">echo</span> hello &gt; hello.txt$ cat hello.txthello$ cat &lt; hello.txt &gt; hello2.txt$ cat hello2.txthello</code></pre><p>&gt;&gt; 表示追加内容(append)。</p><pre><code class="hljs sh">$ cat hello.txthello$ <span class="hljs-built_in">echo</span> hello &gt;&gt; hello.txt$ cat hello.txthellohello</code></pre><blockquote><p>使用管道（ pipes ），我们能够更好的利用文件重定向。 |操作符允许我们将一个程序的输出和另外一个程序的输入连接起来。</p></blockquote><p>管道线的用法实例。 </p>]]></content>
-    
-    
-    <categories>
-      
-      <category>missing</category>
-      
-    </categories>
-    
     
   </entry>
   
