@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      2.1k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      31
        分钟
     </span>
   
@@ -206,20 +206,50 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="数组构造"><a href="#数组构造" class="headerlink" title="数组构造"></a>数组构造</h2><h3 id="特殊矩阵"><a href="#特殊矩阵" class="headerlink" title="特殊矩阵"></a>特殊矩阵</h3><p>In [31]: np.linspace(1,5,11) # 起始、终止（包含）、样本个数 </p>
-<p>Out[31]: array([1. , 1.4, 1.8, 2.2, 2.6, 3. , 3.4, 3.8, 4.2, 4.6, 5. ])</p>
-<p>In [32]: np.arange(1,5,2) # 起始、终止（不包含）、步长 </p>
-<p>Out[32]: array([1, 3])</p>
-<p>In [33]: np.zeros((2,3)) # 传入元组表示各维度大小 </p>
-<p>Out[33]: array([[0., 0., 0.], [0., 0., 0.]])</p>
-<p>In [34]: np.eye(3) # 3*3 的单位矩阵</p>
-<p>Out[34]: array([[1., 0., 0.], [0., 1., 0.], [0., 0., 1.]])</p>
-<p>In [35]: np.eye(3, k=1) # 偏移主对角线 1 个单位的伪单位矩阵 </p>
-<p>Out[35]: array([[0., 1., 0.], [0., 0., 1.], [0., 0., 0.]])</p>
-<p>In [36]: np.full((2,3), 10) # 元组传入大小，10 表示填充数值 </p>
-<p>Out[36]: array([[10, 10, 10], [10, 10, 10]])</p>
-<p>In [37]: np.full((2,3), [1,2,3]) # 通过传入列表填充每列的值 </p>
-<p>Out[37]: array([[1, 2, 3], [1, 2, 3]])</p>
+              <h2 id="数组构造"><a href="#数组构造" class="headerlink" title="数组构造"></a>数组构造</h2><h3 id="特殊矩阵"><a href="#特殊矩阵" class="headerlink" title="特殊矩阵"></a>特殊矩阵</h3><pre><code class="hljs python">In [<span class="hljs-number">31</span>]: np.linspace(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">11</span>) <span class="hljs-comment"># 起始、终止（包含）、样本个数 </span>
+
+Out[<span class="hljs-number">31</span>]: array([<span class="hljs-number">1.</span> , <span class="hljs-number">1.4</span>, <span class="hljs-number">1.8</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">2.6</span>, <span class="hljs-number">3.</span> , <span class="hljs-number">3.4</span>, <span class="hljs-number">3.8</span>, <span class="hljs-number">4.2</span>, <span class="hljs-number">4.6</span>, <span class="hljs-number">5.</span> ])
+
+
+
+In [<span class="hljs-number">32</span>]: np.arange(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">2</span>) <span class="hljs-comment"># 起始、终止（不包含）、步长 </span>
+
+Out[<span class="hljs-number">32</span>]: array([<span class="hljs-number">1</span>, <span class="hljs-number">3</span>])
+
+
+
+In [<span class="hljs-number">33</span>]: np.zeros((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)) <span class="hljs-comment"># 传入元组表示各维度大小 </span>
+
+Out[<span class="hljs-number">33</span>]: array([[<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])
+
+
+
+In [<span class="hljs-number">34</span>]: np.eye(<span class="hljs-number">3</span>) <span class="hljs-comment"># 3*3 的单位矩阵</span>
+
+Out[<span class="hljs-number">34</span>]: array([[<span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>]])
+
+
+
+In [<span class="hljs-number">35</span>]: np.eye(<span class="hljs-number">3</span>, k=<span class="hljs-number">1</span>) <span class="hljs-comment"># 偏移主对角线 1 个单位的伪单位矩阵 </span>
+
+Out[<span class="hljs-number">35</span>]: array([[<span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">0.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">1.</span>], [<span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>, <span class="hljs-number">0.</span>]])
+
+
+
+In [<span class="hljs-number">36</span>]: np.full((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>), <span class="hljs-number">10</span>) <span class="hljs-comment"># 元组传入大小，10 表示填充数值 </span>
+
+Out[<span class="hljs-number">36</span>]: array([[<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>], [<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, <span class="hljs-number">10</span>]])
+
+
+
+In [<span class="hljs-number">37</span>]: np.full((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>), [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) <span class="hljs-comment"># 通过传入列表填充每列的值 </span>
+
+Out[<span class="hljs-number">37</span>]: array([[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]])
+
+</code></pre>
+
+
+
 <h3 id="随机矩阵"><a href="#随机矩阵" class="headerlink" title="随机矩阵"></a>随机矩阵</h3><p>随机矩阵：np.random 最常用的随机生成函数为 rand, randn, randint, choice ，它们分别表示 0-1 均匀分布的随机数组、标准正态 的随机数组、随机整数组和随机列表抽样：</p>
 <p>对于服从区间 a 到 b 上的均匀分布可以如下生成：</p>
 <pre><code class="hljs python">a, b = <span class="hljs-number">5</span>, <span class="hljs-number">15</span>
@@ -356,11 +386,56 @@ Out[<span class="hljs-number">137</span>]:
 array([[ <span class="hljs-number">-2</span>, <span class="hljs-number">-1</span>],
 [<span class="hljs-number">-14</span>, <span class="hljs-number">-9</span>]])</code></pre>
 
+<h2 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h2><p>广播机制用于处理两个不同维度数组之间的操作，这里只讨论不超过两维的数组广播机制</p>
+<h3 id="标量和数组的操作"><a href="#标量和数组的操作" class="headerlink" title="标量和数组的操作"></a>标量和数组的操作</h3><p>当一个标量和数组进行运算时，标量会自动把大小扩充为数组大小，之后进行逐元素操作：</p>
+<pre><code class="hljs python">In [<span class="hljs-number">108</span>]: res = <span class="hljs-number">3</span> * np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)) + <span class="hljs-number">1</span>
+In [<span class="hljs-number">109</span>]: res 
+Out[<span class="hljs-number">109</span>]: array([[<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>], [<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>]])
+In [<span class="hljs-number">110</span>]: res = <span class="hljs-number">1</span> / res
+In [<span class="hljs-number">111</span>]: res 
+Out[<span class="hljs-number">111</span>]: array([[<span class="hljs-number">0.25</span>, <span class="hljs-number">0.25</span>], [<span class="hljs-number">0.25</span>, <span class="hljs-number">0.25</span>]])</code></pre>
+
+<h3 id="二维数组之间的操作"><a href="#二维数组之间的操作" class="headerlink" title="二维数组之间的操作"></a>二维数组之间的操作</h3><p>当两个数组维度完全一致时，使用对应元素的操作，否则会报错，除非其中的某个数组的维度是 m×1 或者 1×n ，那么会扩充其具有 1 的维度为另一个数组对应维度的大小。例如，1×2 数组和 3×2 数组做逐元素 运算时会把第一个数组扩充为 3×2 ，扩充时的对应数值进行赋值。但是，需要注意的是，如果第一个数组 的维度是 1×3 ，那么由于在第二维上的大小不匹配且不为 1 ，此时报错。</p>
+<pre><code class="hljs python">In [<span class="hljs-number">112</span>]: res = np.ones((<span class="hljs-number">3</span>,<span class="hljs-number">2</span>))
+In [<span class="hljs-number">113</span>]: res Out[<span class="hljs-number">113</span>]: array([[<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>], [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>], [<span class="hljs-number">1.</span>, <span class="hljs-number">1.</span>]])
+In [<span class="hljs-number">114</span>]: res * np.array([[<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]]) <span class="hljs-comment"># 扩充第一维度为 3 </span>
+Out[<span class="hljs-number">114</span>]: array([[<span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>], [<span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>], [<span class="hljs-number">2.</span>, <span class="hljs-number">3.</span>]])
+In [<span class="hljs-number">115</span>]: res * np.array([[<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>],[<span class="hljs-number">4</span>]]) <span class="hljs-comment"># 扩充第二维度为 2 </span>
+Out[<span class="hljs-number">115</span>]: array([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>], [<span class="hljs-number">3.</span>, <span class="hljs-number">3.</span>], [<span class="hljs-number">4.</span>, <span class="hljs-number">4.</span>]])
+In [<span class="hljs-number">116</span>]: res * np.array([[<span class="hljs-number">2</span>]]) <span class="hljs-comment"># 等价于两次扩充 </span>
+Out[<span class="hljs-number">116</span>]: array([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>], [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>], [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>]])</code></pre>
+
+<h3 id="一维数组与二维数组的操作"><a href="#一维数组与二维数组的操作" class="headerlink" title="一维数组与二维数组的操作"></a>一维数组与二维数组的操作</h3><p>当一维数组 Ak 与二维数组 Bm,n 操作时，等价于把一维数组视作 A1,k 的二维数组，使用的广播法则与【b】 中一致，当 k! = n 且 k,n 都不是 1 时报错。</p>
+<pre><code class="hljs python">In [<span class="hljs-number">117</span>]: np.ones(<span class="hljs-number">3</span>) + np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)) 
+Out[<span class="hljs-number">117</span>]: array([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>], [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>]])
+In [<span class="hljs-number">118</span>]: np.ones(<span class="hljs-number">3</span>) + np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)) 
+Out[<span class="hljs-number">118</span>]: array([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>], [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>]])
+In [<span class="hljs-number">119</span>]: np.ones(<span class="hljs-number">1</span>) + np.ones((<span class="hljs-number">2</span>,<span class="hljs-number">3</span>)) 
+Out[<span class="hljs-number">119</span>]: array([[<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>], [<span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>, <span class="hljs-number">2.</span>]])
+</code></pre>
+
+<h3 id="一维数组和一维数组操作"><a href="#一维数组和一维数组操作" class="headerlink" title="一维数组和一维数组操作"></a>一维数组和一维数组操作</h3><p>矩阵A的行乘以矩阵B的列，</p>
+<pre><code class="hljs angelscript">arr1 = np.full((<span class="hljs-number">1</span>,<span class="hljs-number">3</span>), <span class="hljs-number">4</span>)
+arr2 = np.full((<span class="hljs-number">4</span>,<span class="hljs-number">1</span>), <span class="hljs-number">3</span>)
+arr1*arr2
+# output
+<span class="hljs-built_in">array</span>([[<span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>],
+       [<span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>],
+       [<span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>],
+       [<span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>, <span class="hljs-number">12</span>]])</code></pre>
+
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/data-science/">data science</a>
+                    
+                  </div>
                 
                 
               </div>
@@ -371,6 +446,12 @@ array([[ <span class="hljs-number">-2</span>, <span class="hljs-number">-1</span
                 <div class="post-prevnext row">
                   <div class="post-prev col-6">
                     
+                    
+                      <a href="/2021/04/08/cpp-primer/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">cpp-primer</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </div>
                   <div class="post-next col-6">

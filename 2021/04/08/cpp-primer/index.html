@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>cpp-primer - FC</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Blog</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+                cpp-primer
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-04-08 10:36">
+      2021年4月8日 上午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <h2 id="第一章-开始"><a href="#第一章-开始" class="headerlink" title="第一章 开始"></a>第一章 开始</h2><h3 id="1-1-编写一个简单的C-程序"><a href="#1-1-编写一个简单的C-程序" class="headerlink" title="1.1 编写一个简单的C++程序"></a>1.1 编写一个简单的C++程序</h3><p> 每个C++程序都包含一个或多个函数，其中一个必须命名为main. </p>
+<h3 id="1-2-初识输入输出"><a href="#1-2-初识输入输出" class="headerlink" title="1.2 初识输入输出"></a>1.2 初识输入输出</h3><table>
+<thead>
+<tr>
+<th><strong>对象</strong></th>
+<th><strong>用途</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cin</td>
+<td>标准输入</td>
+</tr>
+<tr>
+<td>cout</td>
+<td>标准输出</td>
+</tr>
+<tr>
+<td>cerr</td>
+<td>标准错误</td>
+</tr>
+<tr>
+<td>clog</td>
+<td>输出运行时的一般性消息</td>
+</tr>
+</tbody></table>
+<h3 id="1-3-注释简介"><a href="#1-3-注释简介" class="headerlink" title="1.3 注释简介"></a>1.3 注释简介</h3><p>两种：</p>
+<p>单行注释：//</p>
+<p>界定符：/* 和 */</p>
+<h3 id="1-4-控制流"><a href="#1-4-控制流" class="headerlink" title="1.4 控制流"></a>1.4 控制流</h3><p>while;for;if;</p>
+<h2 id="第二章-变量和基本类型"><a href="#第二章-变量和基本类型" class="headerlink" title="第二章 变量和基本类型"></a>第二章 变量和基本类型</h2><p> 不要混用符号类型和无符号类型。 </p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">位</th>
+<th align="left">范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">char</td>
+<td align="center">1 个字节</td>
+<td align="left">-128 到 127 或者 0 到 255</td>
+</tr>
+<tr>
+<td align="center">unsigned char</td>
+<td align="center">1 个字节</td>
+<td align="left">0 到 255</td>
+</tr>
+<tr>
+<td align="center">signed char</td>
+<td align="center">1 个字节</td>
+<td align="left">-128 到 127</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">4 个字节</td>
+<td align="left">-2147483648 到 2147483647</td>
+</tr>
+<tr>
+<td align="center">unsigned int</td>
+<td align="center">4 个字节</td>
+<td align="left">0 到 4294967295</td>
+</tr>
+<tr>
+<td align="center">signed int</td>
+<td align="center">4 个字节</td>
+<td align="left">-2147483648 到 2147483647</td>
+</tr>
+<tr>
+<td align="center">short int</td>
+<td align="center">2 个字节</td>
+<td align="left">-32768 到 32767</td>
+</tr>
+<tr>
+<td align="center">unsigned short int</td>
+<td align="center">2 个字节</td>
+<td align="left">0 到 65,535</td>
+</tr>
+<tr>
+<td align="center">signed short int</td>
+<td align="center">2 个字节</td>
+<td align="left">-32768 到 32767</td>
+</tr>
+<tr>
+<td align="center">long int</td>
+<td align="center">8 个字节</td>
+<td align="left">-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807</td>
+</tr>
+<tr>
+<td align="center">signed long int</td>
+<td align="center">8 个字节</td>
+<td align="left">-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807</td>
+</tr>
+<tr>
+<td align="center">unsigned long int</td>
+<td align="center">8 个字节</td>
+<td align="left">0 到 18,446,744,073,709,551,615</td>
+</tr>
+<tr>
+<td align="center">float</td>
+<td align="center">4 个字节</td>
+<td align="left">精度型占4个字节（32位）内存空间，+/- 3.4e +/- 38 (~7 个数字)</td>
+</tr>
+<tr>
+<td align="center">double</td>
+<td align="center">8 个字节</td>
+<td align="left">双精度型占8 个字节（64位）内存空间，+/- 1.7e +/- 308 (~15 个数字)</td>
+</tr>
+<tr>
+<td align="center">long double</td>
+<td align="center">16 个字节</td>
+<td align="left">长双精度型 16 个字节（128位）内存空间，可提供18-19位有效数字。</td>
+</tr>
+<tr>
+<td align="center">wchar_t</td>
+<td align="center">2 或 4 个字节</td>
+<td align="left">1 个宽字符</td>
+</tr>
+</tbody></table>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h3 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h3><h4 id="基本形式："><a href="#基本形式：" class="headerlink" title="基本形式："></a>基本形式：</h4><p>类型说明符，随后紧跟着一个或者多个变量名组成的列表，其中变量名以逗号分隔，最后以分号结束。</p>
+<h4 id="初始值"><a href="#初始值" class="headerlink" title="初始值"></a>初始值</h4><p>初始化和赋值是2个完全不同的操作。初始化的含义是创建变量的时候赋予一个初始值，而赋值的含义是把对象的当前值擦除，用一个新值来替代。两者区别很小。</p>
+<h4 id="列表初始化"><a href="#列表初始化" class="headerlink" title="列表初始化"></a>列表初始化</h4><p>用花括号来初始化变量的方式，称为列表初始化。</p>
+<h4 id="默认初始化"><a href="#默认初始化" class="headerlink" title="默认初始化"></a>默认初始化</h4><p>如果定义变量没有指定初始值，则变量被默认初始化。</p>
+<p>:::tips<br>例外情况：<br>定义在函数体内部的内置类型变量将不被初始化，其值未定义。<br>建议初始化每个内置类型的变量。<br>:::</p>
+<h3 id="变量声明和定义的关系"><a href="#变量声明和定义的关系" class="headerlink" title="变量声明和定义的关系"></a>变量声明和定义的关系</h3><h4 id="变量声明："><a href="#变量声明：" class="headerlink" title="变量声明："></a>变量声明：</h4><p>​    规定了变量的类型和名字。</p>
+<h4 id="变量定义："><a href="#变量定义：" class="headerlink" title="变量定义："></a>变量定义：</h4><p>​    除声明之外，还需要申请存储空间。</p>
+<p> 如果想声明一个变量，而非定义它，需要使用extern关键词。 </p>
+<pre><code class="hljs c++"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> i;   <span class="hljs-comment">// 声明i而非定义i</span>
+<span class="hljs-keyword">int</span> j;      <span class="hljs-comment">// 声明并定义j </span></code></pre>
+
+<p> ::: tip变量只能被定义一次，但可以被多次声明。::: </p>
+<h4 id="名字的作用域"><a href="#名字的作用域" class="headerlink" title="名字的作用域"></a>名字的作用域</h4><p>作用域：C++中大多数作用域都用花括号分隔。</p>
+<p>作用域中一旦声明了某个名字，它所嵌套的所有作用域都能访问该名字。同时，<strong>允许在内层作用域中重新定义外层作用域中有的名字。</strong></p>
+<p>::: warning如果函数有可能用到某全局变量，则不宜再定义一个同名的局部变量。:::</p>
+<h3 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h3><p> 定义:复合类型是基于其他类型定义的类型。 </p>
+<h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><p>引用：为对象起另外一个名字。 </p>
+<p> ::: warning引用必须被初始化。引用本身不是对象，所以不能定义引用的引用。引用要和绑定的对象严格匹配。引用类型的初始值，必须是一个对象。::: </p>
+<h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>指针：本身就是一个对象。允许对指针赋值和拷贝。指针无须在定义的时候赋值。</p>
+<p>（1）利用指针访问对象</p>
+<p>如果指针指向了一个对象，则允许使用解引用符（*）来访问该对象。</p>
+<p>（2）void* 指针</p>
+<p> The void pointer in C is a pointer which is not associated with any data types. It points to some dat location in the storage means points to the address of variables. It is also called general purpose pointer. In C, malloc() and calloc() functions return void * or generic pointers. </p>
+<pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+   <span class="hljs-keyword">int</span> a = <span class="hljs-number">7</span>;
+   <span class="hljs-keyword">float</span> b = <span class="hljs-number">7.6</span>;
+   <span class="hljs-keyword">void</span> *p;
+   p = &amp;a;
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Integer variable is = %d&quot;</span>, *( (<span class="hljs-keyword">int</span>*) p) );
+   p = &amp;b;
+   <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\nFloat variable is = %f&quot;</span>, *( (<span class="hljs-keyword">float</span>*) p) );
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
+
+<h4 id="理解符合类型的声明"><a href="#理解符合类型的声明" class="headerlink" title="理解符合类型的声明"></a>理解符合类型的声明</h4><h5 id="指向指针的指针"><a href="#指向指针的指针" class="headerlink" title="指向指针的指针"></a>指向指针的指针</h5><p>** 表示指向指针的指针</p>
+<p>*** 表示指向指针的指针的指针</p>
+<h4 id="指向指针的引用"><a href="#指向指针的引用" class="headerlink" title="指向指针的引用"></a>指向指针的引用</h4><p>不能定义指向引用的指针。但指针是对象，所以存在对指针的引用。</p>
+<h3 id="const限定符"><a href="#const限定符" class="headerlink" title="const限定符"></a>const限定符</h3><p> 定义：const用于定义一个变量，它的值不能被改变。const对象必须初始化。 </p>
+<p>::: tip </p>
+<p>    编译器将在编译过程中把用 到该变量的地方都替换成对应的值，如果程序包含多个文件，则每个用了const 对象的文件都应可以访问到他的初始值。为了支持这个用法， 同时避免对同一变量的重复定义，默认情况下，const对象仅设定为仅在文件内有效。<br>    为了让const对象在多个文件均可共享，解决办法是，对于const 变量不管是声明还是定义都添加extern关键字。</p>
+<p>:::</p>
+<h4 id="const的引用"><a href="#const的引用" class="headerlink" title="const的引用"></a>const的引用</h4><p>允许为一个常量引用绑定非常量的对象、字面值，甚至是个一般表达式。一般，引用的类型必须与其所引用对象的类型一致，特殊情况是表达式。</p>
+<h4 id="指针和const"><a href="#指针和const" class="headerlink" title="指针和const"></a>指针和const</h4><p> 弄清楚类型，可以从右边往左边阅读。 </p>
+<ul>
+<li>const 修饰指针指向的内容，则内容为不可变量。 </li>
+</ul>
+<pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *p = <span class="hljs-number">8</span>;</code></pre>
+<p>则指针指向的内容数值 <code>8</code> 不可改变。简称左定值，因为 const 位于 * 号的左边。</p>
+<ul>
+<li>const 修饰指针，则指针为不可变量。 </li>
+</ul>
+<pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a = <span class="hljs-number">8</span>;
+<span class="hljs-keyword">int</span>* <span class="hljs-keyword">const</span> p = &amp;a;
+*p = <span class="hljs-number">9</span>; <span class="hljs-comment">// 正确</span>
+<span class="hljs-keyword">int</span>  b = <span class="hljs-number">7</span>;
+p = &amp;b; <span class="hljs-comment">// 错误</span></code></pre>
+
+<ul>
+<li>const 修饰指针和指针指向的内容，则指针和指针指向的内容都为不可变量。 </li>
+</ul>
+<pre><code class="hljs cpp"><span class="hljs-keyword">int</span> a = <span class="hljs-number">8</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> * <span class="hljs-keyword">const</span>  p = &amp;a;</code></pre>
+
+<p>这种情况是上两种情况的结合， 即指针与指向的内容和指针指向的内存地址都不可变</p>
+<p> <strong>“左定值，右定向，const修饰不变量”</strong> </p>
+<h4 id="常量函数"><a href="#常量函数" class="headerlink" title="常量函数"></a>常量函数</h4><p> &lt;类型说明符&gt;&lt;函数名&gt;(&lt;参数表&gt;)const; </p>
+<p>要注意的是，修饰符const要加在函数说明的尾部（若放在首部的话，则是对函数返回值的修饰,即返回值是const），它是函数类型的一部分。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">int</span> me;
+<span class="hljs-keyword">int</span> readme <span class="hljs-keyword">const</span> &#123; <span class="hljs-comment">// 常量函数 </span>
+    <span class="hljs-keyword">return</span> me;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writeme</span><span class="hljs-params">()</span> </span>&#123; 
+    me = <span class="hljs-number">1</span>; 
+&#125; </code></pre>
+<p>当一个函数被const说明后，其函数中出现的对外部数据的<strong>任何写入或修改都将被系统检查为出错</strong>。如果把函数writeme()说明为：</p>
+<pre><code class="hljs cpp\">void writeme() const &#123;
+    me &#x3D; 1; 
+&#125;   </code></pre>
+
+<h4 id="const修饰类成员函数"><a href="#const修饰类成员函数" class="headerlink" title="const修饰类成员函数"></a>const修饰类成员函数</h4><p> const 修饰类成员函数，其目的是防止成员函数修改被调用对象的值，如果我们不想修改一个调用对象的值，所有的成员函数都应当声明为 const 成员函数。 </p>
+<p> <strong>注意：</strong>const 关键字不能与 static 关键字同时使用，因为 static 关键字修饰静态成员函数，静态成员函数不含有 this 指针，即不能实例化，const 成员函数必须具体到某一实例。 </p>
+<p>  值得注意的是，把一个成员函数声明为const可以保证这个成员函数不修改数据成员，但是，如果据成员是指针，则const成员函数并不能保证不修改指针指向的对象，编译器不会把这种修改检测为错误。例如， </p>
+<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Name</span> &#123;</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s)</span> <span class="hljs-keyword">const</span></span>;
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">char</span> *m_sName;
+&#125;;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s)</span> <span class="hljs-keyword">const</span> </span>&#123;
+    m_sName = s.c_str();      <span class="hljs-comment">// 错误！不能修改m_sName;</span>
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.size(); ++i) 
+        m_sName[i] = s[i];    <span class="hljs-comment">// 不好的风格，但不是错误的</span>
+&#125;</code></pre>
+
+<p>const成员函数可以被具有相同参数列表的非const成员函数重载，例如，</p>
+<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">char</span> <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">char</span> <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span> <span class="hljs-keyword">const</span></span>;
+&#125;;</code></pre>
+
+<p>​    在这种情况下，类对象的常量性决定调用哪个函数。 </p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">const</span> Screen cs;
+Screen cc2;
+<span class="hljs-keyword">char</span> ch = cs.get(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);  <span class="hljs-comment">// 调用const成员函数</span>
+ch = cs2.get(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);     <span class="hljs-comment">// 调用非const成员函数</span></code></pre>
+
+
+
+<h4 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a>constexpr</h4><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14116003/difference-between-constexpr-and-const">https://stackoverflow.com/questions/14116003/difference-between-constexpr-and-const</a></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/c/">c++</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/31/numpy/">
+                        <span class="hidden-mobile">numpy</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

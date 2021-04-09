@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>分类 - missing - FC</title>
+  <title>FC</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 50vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -137,7 +137,7 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-                分类 - missing
+                
               
             </span>
 
@@ -161,38 +161,60 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">共计 4 篇文章</p>
-  <hr>
-  
+
+  <div class="row mx-auto index-card">
     
-      
-      <p class="h5">2020</p>
     
-    <a href="/2020/12/08/missing/Command-line%20Environment/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Command-line Environment</span>
-      <span style="float: right;">12-08</span>
-    </a>
+    <div class="col-12 col-md-12 mx-auto index-info">
+      <a class="index-header" href="/2020/12/08/missing/Shell/">Shell</a>
+
+      <a href="/2020/12/08/missing/Shell/" class="index-excerpt">
+        
+        
+          
+        
+        <div>在程序间创建连接信息的流动称为流，程序中存在两个流。
+流入程序的称为输入流，流出的则称为输出流。
+程序读取信息时会从输入流中进行读取，相反打印信息时则是输出到输出流中。
+例如重定向 &gt; 可以将程序的输入流和输出流分别重定向到文件中。
+
+最简单的重定向是 &lt; file 和 &gt; file。这两个命令可以将程序的输入输出流分别重定向到文件：
+
+$ echo hello &gt; hel</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-12-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/missing/">missing</a>
+            
+          </div>
+        
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
   
-    
-    <a href="/2020/12/08/missing/Git/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Git</span>
-      <span style="float: right;">12-08</span>
-    </a>
-  
-    
-    <a href="/2020/12/08/missing/Shell%20Scripting/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Shell Tools and Scripting</span>
-      <span style="float: right;">12-08</span>
-    </a>
-  
-    
-    <a href="/2020/12/08/missing/Shell/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Shell</span>
-      <span style="float: right;">12-08</span>
-    </a>
-  
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
