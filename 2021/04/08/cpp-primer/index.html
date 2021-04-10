@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.1k 字
+      4k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      25
+      48
        分钟
     </span>
   
@@ -438,11 +438,206 @@ ch = cs2.get(<span class="hljs-number">0</span>, <span class="hljs-number">0</sp
 
 
 <h4 id="constexpr"><a href="#constexpr" class="headerlink" title="constexpr"></a>constexpr</h4><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14116003/difference-between-constexpr-and-const">https://stackoverflow.com/questions/14116003/difference-between-constexpr-and-const</a></p>
+<h3 id="处理类型"><a href="#处理类型" class="headerlink" title="处理类型"></a>处理类型</h3><h4 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h4><p> 两种方法用于定义类型别名： </p>
+<p> （1）使用关键词typedef </p>
+<pre><code class="hljs angelscript"><span class="hljs-keyword">typedef</span> <span class="hljs-built_in">double</span> wages; <span class="hljs-comment">//wages是double的同义词</span>
+<span class="hljs-keyword">typedef</span> wages *p; <span class="hljs-comment">// p是double*的同义词</span></code></pre>
+
+<p> （2）别名声明 </p>
+<pre><code class="hljs c++"><span class="hljs-keyword">using</span> SI = Sales_item;  <span class="hljs-comment">// SI是Sales_item的同义词</span></code></pre>
+
+<p>auto类型说明符：让编译器通过初始值来推算变量的类型。</p>
+<p>decltype类型指示符：选择并返回操作符的数据类型。只得到类型，不实际计算表达式的值。</p>
+<pre><code class="hljs c++"><span class="hljs-keyword">int</span> i = <span class="hljs-number">4</span>;
+<span class="hljs-keyword">decltype</span>(i) a; <span class="hljs-comment">//推导结果为int。a的类型为int。</span></code></pre>
+
+<h3 id="自定义数据结构"><a href="#自定义数据结构" class="headerlink" title="自定义数据结构"></a>自定义数据结构</h3><p>（1）类</p>
+<p>数据结构是把一组相关的数据元素组织起来，然后使用它们的策略和方法。</p>
+<p>类一般不定义在函数体内，为了确保各个文件中类的定义一致，类通常被定义在头文件中，而且类所在头文件的名字应该与类的名字一样。</p>
+<p>头文件通常包含那些被定义一次的实体。</p>
+<p>（2）预处理器</p>
+<pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> SALES_DATA_H</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SALES_DATA_H</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span></code></pre>
+
+<p>一般把预处理变量的名字全部大写。</p>
+<h2 id="字符串、向量和数组"><a href="#字符串、向量和数组" class="headerlink" title="字符串、向量和数组"></a><strong>字符串、向量和数组</strong></h2><p> string表示可变长的字符序列，vector存放的是某种给定类型对象的可变长序列。 </p>
+<h3 id="命名空间的-using-声明"><a href="#命名空间的-using-声明" class="headerlink" title="命名空间的 using 声明"></a>命名空间的 using 声明</h3><pre><code class="hljs cpp"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span>:name; </code></pre>
+
+<p> <strong>头文件不应包含using声明。</strong> </p>
+<h3 id="标准库类型-string"><a href="#标准库类型-string" class="headerlink" title="标准库类型 string"></a>标准库类型 string</h3><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</code></pre>
+
+<h4 id="定义和初始化"><a href="#定义和初始化" class="headerlink" title="定义和初始化"></a>定义和初始化</h4><pre><code class="hljs cpp"><span class="hljs-built_in">string</span> s1;
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s2</span><span class="hljs-params">(s1)</span></span>;
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s3</span><span class="hljs-params">(<span class="hljs-string">&quot;value&quot;</span>)</span></span>;
+s3 = <span class="hljs-string">&quot;value&quot;</span>;
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s4</span><span class="hljs-params">(n, <span class="hljs-string">&#x27;c&#x27;</span>)</span></span>;  <span class="hljs-comment">// n个c</span></code></pre>
+
+<h4 id="string对象的操作"><a href="#string对象的操作" class="headerlink" title="string对象的操作"></a>string对象的操作</h4><pre><code class="hljs cpp">s.empty();      <span class="hljs-comment">// 判空</span>
+s.size();       <span class="hljs-comment">// 字符个数</span>
+s[n];           <span class="hljs-comment">// s中第n个字符的引用</span>
+s1+s2;          <span class="hljs-comment">// s1和s2连接</span>
+&lt;,&lt;=,&gt;,&gt;=       <span class="hljs-comment">// 比较</span></code></pre>
+
+<h4 id="处理string对象中的字符-遍历给定序列中的每个值执行某种操作"><a href="#处理string对象中的字符-遍历给定序列中的每个值执行某种操作" class="headerlink" title="处理string对象中的字符 遍历给定序列中的每个值执行某种操作"></a>处理string对象中的字符 遍历给定序列中的每个值执行某种操作</h4><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (declaration : expression)   
+        statement</code></pre>
+
+<h3 id="标准库类型-vector"><a href="#标准库类型-vector" class="headerlink" title="标准库类型 vector"></a>标准库类型 vector</h3><p>标准库vector表示对象的集合，其中所有对象的类型都相同。</p>
+<p>vector是一个类模板，而不是类型。</p>
+<h4 id="定义和初始化vector对象"><a href="#定义和初始化vector对象" class="headerlink" title="定义和初始化vector对象"></a>定义和初始化vector对象</h4><pre><code class="hljs cpp"><span class="hljs-built_in">vector</span>&lt;T&gt; v1;
+<span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;T&gt; <span class="hljs-title">v2</span><span class="hljs-params">(v1)</span></span>;
+<span class="hljs-built_in">vector</span>&lt;T&gt; v2 = v1;
+<span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;T&gt; <span class="hljs-title">v3</span><span class="hljs-params">(n, val)</span></span>;
+<span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;T&gt; <span class="hljs-title">v4</span><span class="hljs-params">(n)</span></span>;
+<span class="hljs-built_in">vector</span>&lt;T&gt; v5&#123;a,b,c...&#125;
+vecrot&lt;T&gt; v5=&#123;a,b,c...&#125; </code></pre>
+
+<p> 如果用圆括号，那么提供的值是用来构造vector对象的。 </p>
+<p> 如果用花括号，则是使用列表初始化该vector对象。 </p>
+<h4 id="向vector对象添加元素"><a href="#向vector对象添加元素" class="headerlink" title="向vector对象添加元素"></a>向vector对象添加元素</h4><p> 先定义一个空的vector对象，在运行的时候使用**push_back()**向其中添加。 </p>
+<h4 id="其他vector操作"><a href="#其他vector操作" class="headerlink" title="其他vector操作"></a>其他vector操作</h4><pre><code class="hljs c++">v.empty();
+v.<span class="hljs-built_in">size</span>();
+v.push_back(t);
+v[n];</code></pre>
+
+<h3 id="迭代器介绍"><a href="#迭代器介绍" class="headerlink" title="迭代器介绍"></a>迭代器介绍</h3><h4 id="迭代器运算符"><a href="#迭代器运算符" class="headerlink" title="迭代器运算符"></a>迭代器运算符</h4><pre><code class="hljs cpp">*iter            <span class="hljs-comment">// 解引用，返回引用</span>
+iter-&gt;mem        <span class="hljs-comment">// 等价于  (*iter).mem</span>
+++iter
+--iter
+iter1 == iter2
+iter1 != iter2
+iter + n
+iter - n
+iter += n
+iter -= n
+iter1 - iter2     <span class="hljs-comment">// 两个迭代器相减的结果是它们之间的距离</span>
+&gt;, &gt;=, &lt;, &lt;=      <span class="hljs-comment">// 位置比较</span></code></pre>
+
+<p>::: warning</p>
+<p>凡是使用了迭代器的循环体，都不能向迭代器所属的容器添加元素。</p>
+<p>:::</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p> 数组、指针 </p>
+<p> 使用数组下标的时候，通常将其定义为size_t类型。 </p>
+<p>不存在引用的数组。</p>
+<p>如果两个指针分别指向不相关的对象，则不能进行对这2个指针进行比较。</p>
+<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><p><strong>begin</strong> string和vector的成员，返回指向第一个元素的迭代器。也是一个标准库函数，输入一个数组，返回指向该数组首元素的指针。</p>
+<p><strong>end</strong> string和vector的成员，返回一个尾后迭代器。也是一个标准库函数，输入一个数组，返回指向该数组尾元素的下一个位置的指针。</p>
+<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><strong>重载运算符</strong>：为已经存在的运算符赋予了另外一层含义。</p>
+<p><strong>右值：</strong> 当一个对象用作右值得时候，用的是对象的<strong>值</strong>（内容）。</p>
+<p><strong>左值：</strong> 当对象被用作左值得时候，用的是对象的<strong>身份</strong>（在内存中的位置）。</p>
+<p><strong>左值 (lvalue, locator value)</strong> 表示了一个占据内存中某个可识别的位置（也就是一个地址）的对象。</p>
+<p><strong>右值 (rvalue)</strong> 则使用排除法来定义。一个表达式不是 <em>左值</em> 就是 <em>右值</em> 。 那么，右值是一个 <em>不</em> 表示内存中某个可识别位置的对象的表达式。</p>
+<p><a target="_blank" rel="noopener" href="https://nettee.github.io/posts/2018/Understanding-lvalues-and-rvalues-in-C-and-C/">https://nettee.github.io/posts/2018/Understanding-lvalues-and-rvalues-in-C-and-C/</a></p>
+<h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><p> %： 参与取余运算的运算对象必须是<strong>整数</strong>类型。 </p>
+<h3 id="逻辑和关系运算符"><a href="#逻辑和关系运算符" class="headerlink" title="逻辑和关系运算符"></a>逻辑和关系运算符</h3><table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">!</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+</tr>
+<tr>
+<td align="center">&lt;=</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+</tr>
+<tr>
+<td align="center">&gt;=</td>
+</tr>
+<tr>
+<td align="center">==</td>
+</tr>
+<tr>
+<td align="center">!=</td>
+</tr>
+<tr>
+<td align="center">&amp;&amp;</td>
+</tr>
+<tr>
+<td align="center">||</td>
+</tr>
+</tbody></table>
+<p> &amp;&amp; 运算符和 || 运算符都是先求左侧运算对象的值再求右侧运算对象的值。 </p>
+<h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><p>赋值运算符满足右结合律。</p>
+<p>不要混淆相等运算符和赋值运算符</p>
+<h3 id="递增和递减运算符"><a href="#递增和递减运算符" class="headerlink" title="递增和递减运算符"></a>递增和递减运算符</h3><p>递增运算符 ++</p>
+<p>递减运算符 –</p>
+<h3 id="成员访问运算符"><a href="#成员访问运算符" class="headerlink" title="成员访问运算符"></a>成员访问运算符</h3><p> 点运算符和箭头运算符 </p>
+<pre><code class="hljs c++">n = (*p).<span class="hljs-built_in">size</span>();
+n = p-&gt;<span class="hljs-built_in">size</span>(); </code></pre>
+
+<h3 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h3><pre><code class="hljs cpp">condition ? expression1 : expression2; </code></pre>
+
+<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><p><img src="https://mmbiz.qpic.cn/mmbiz_png/KmXPKA19gW9UZFZFlIibIBPK52gb5KatGRPVOxJAJkwamf6aT5Qlb7icLmA1kzjEvqxl9ibIwWeLlT2OcuhkLaM1Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" srcset="/img/loading.gif" alt="图片"></p>
+<h3 id="sizeof运算符"><a href="#sizeof运算符" class="headerlink" title="sizeof运算符"></a>sizeof运算符</h3><p> sizeof运算符返回一条表达式或一个类型名字所占的字节数，其所得值是一个size_t类型，是一个常量表达式。 </p>
+<pre><code class="hljs c++"><span class="hljs-keyword">sizeof</span> (type)
+<span class="hljs-keyword">sizeof</span> expr</code></pre>
+
+<h3 id="逗号运算符"><a href="#逗号运算符" class="headerlink" title="逗号运算符"></a>逗号运算符</h3><p> 逗号运算符含有两个运算对象，按照从左向右的顺序依次求值。 </p>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><h4 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h4><h4 id="显式转换"><a href="#显式转换" class="headerlink" title="显式转换"></a>显式转换</h4><p>C++中四种类型转换是：static_cast, dynamic_cast, const_cast, reinterpret_cast</p>
+<h4 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a>const_cast</h4><p>用于将const变量转为非const</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> constant = <span class="hljs-number">21</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>* const_p = &amp;constant;
+<span class="hljs-keyword">int</span>* modifier = <span class="hljs-keyword">const_cast</span>&lt;<span class="hljs-keyword">int</span>*&gt;(const_p);
+*modifier = <span class="hljs-number">7</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; constant &lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt;  *modifier &lt;&lt;<span class="hljs-string">&quot; &quot;</span>&lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;constant: &quot;</span> &lt;&lt; constant &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;const_p: &quot;</span> &lt;&lt; *const_p &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;modifier: &quot;</span> &lt;&lt; *modifier &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;constant: &quot;</span> &lt;&lt; &amp;constant &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;const_p: &quot;</span> &lt;&lt; const_p &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;modifier: &quot;</span> &lt;&lt; modifier &lt;&lt; <span class="hljs-built_in">endl</span>;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">注意constant的值还是21， *modifier值变成了7</span>
+<span class="hljs-comment">并且&amp;constant、const_p、modifier指向的地址相同</span>
+<span class="hljs-comment">**/</span></code></pre>
+
+<p> 原因是，我们可能调用了一个参数不是const的函数，而我们要传进去的实际参数确实const的，但是我们知道这个函数是不会对参数做修改的。于是我们就需要使用const_cast去除const限定，以便函数能够接受这个实际参数。 </p>
+<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Printer</span> <span class="hljs-params">(<span class="hljs-keyword">int</span>* val,<span class="hljs-built_in">string</span> seperator = <span class="hljs-string">&quot;\n&quot;</span>)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-built_in">cout</span> &lt;&lt; val&lt;&lt; seperator;
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>
+<span class="hljs-function"></span>&#123;    
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> consatant = <span class="hljs-number">20</span>;
+    <span class="hljs-comment">//Printer(consatant);//Error: invalid conversion from &#x27;int&#x27; to &#x27;int*&#x27;</span>
+    Printer(<span class="hljs-keyword">const_cast</span>&lt;<span class="hljs-keyword">int</span> *&gt;(&amp;consatant));
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
+
+<h4 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a>static_cast</h4><p>用于各种隐式转换，比如非const转const，void*转指针等, static_cast能用于多态向上转化，如果向下转能成功但是不安全，结果未知；</p>
+<h4 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a>dynamic_cast</h4><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/biancheng/view/3297.html">http://c.biancheng.net/cpp/biancheng/view/3297.html</a></p>
+<p>与类有关</p>
+<p>用于动态类型转换。只能用于含有虚函数的类，用于类层次间的向上和向下转化。只能转指针或引用。向下转化时，如果是非法的对于指针返回NULL，对于引用抛异常。要深入了解内部转换的原理。</p>
+<p>向上转换：指的是子类向基类的转换</p>
+<p>向下转换：指的是基类向子类的转换</p>
+<p>它通过判断在执行到该语句的时候变量的运行时类型和要转换的类型是否相同来判断是否能够进行向下转换。</p>
+<h4 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a>reinterpret_cast</h4><p>几乎什么都可以转，比如将int转指针，可能会出问题，尽量少用；</p>
+<h5 id="为什么不使用C的强制转换？"><a href="#为什么不使用C的强制转换？" class="headerlink" title="为什么不使用C的强制转换？"></a>为什么不使用C的强制转换？</h5><p>C的强制转换表面上看起来功能强大什么都能转，但是转化不够明确，不能进行错误检查，容易出错。</p>
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/c/">c++</a>
+                    
+                  </div>
                 
                 
                   <div class="post-meta">
