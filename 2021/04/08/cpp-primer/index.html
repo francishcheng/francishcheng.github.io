@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4k 字
+      5.4k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      48
+      64
        分钟
     </span>
   
@@ -626,6 +626,105 @@ n = p-&gt;<span class="hljs-built_in">size</span>(); </code></pre>
 <p>它通过判断在执行到该语句的时候变量的运行时类型和要转换的类型是否相同来判断是否能够进行向下转换。</p>
 <h4 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a>reinterpret_cast</h4><p>几乎什么都可以转，比如将int转指针，可能会出问题，尽量少用；</p>
 <h5 id="为什么不使用C的强制转换？"><a href="#为什么不使用C的强制转换？" class="headerlink" title="为什么不使用C的强制转换？"></a>为什么不使用C的强制转换？</h5><p>C的强制转换表面上看起来功能强大什么都能转，但是转化不够明确，不能进行错误检查，容易出错。</p>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><h3 id="简单语句"><a href="#简单语句" class="headerlink" title="简单语句"></a>简单语句</h3><h4 id="空语句"><a href="#空语句" class="headerlink" title="空语句"></a>空语句</h4><p> ;    // 空语句 </p>
+<h4 id="复合语句"><a href="#复合语句" class="headerlink" title="复合语句"></a>复合语句</h4><p> 复合语句是指用花括号括起来的（可能为空的）语句和声明的序列，复合语句也被称作块（block）。 </p>
+<p> {} </p>
+<h3 id="语句作用域"><a href="#语句作用域" class="headerlink" title="语句作用域"></a>语句作用域</h3><p> 定义在控制结构当中的变量只在相应语句的内部可见，一旦语句结束，变量就超出其作用范围。 </p>
+<h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h3><h4 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h4><h4 id="switch-语句"><a href="#switch-语句" class="headerlink" title="switch 语句"></a>switch 语句</h4><p>case关键字和它对应的值一起被称为case标签。</p>
+<p>case标签必须是整形常量表达式。</p>
+<p>如果某个case标签匹配成功，将从该标签开始往后顺序执行所有case分支，除非程序显示的中断了这一过程。</p>
+<p>dedault 标签：如果没有任何一个case标签能匹配上switch表达式的值，程序将执行紧跟在default标签后面的语句。</p>
+<h3 id="迭代语句"><a href="#迭代语句" class="headerlink" title="迭代语句"></a>迭代语句</h3><p>（1）while 语句</p>
+<pre><code class="hljs gauss"><span class="hljs-keyword">while</span> (condition)            statement</code></pre>
+
+<p>（2）传统 for 语句</p>
+<pre><code class="hljs mel"><span class="hljs-keyword">for</span> (initializar; <span class="hljs-keyword">condition</span>; <span class="hljs-keyword">expression</span>)        statement</code></pre>
+
+<p>for 语句中定义的对象只在for循环体内可见。</p>
+<p>（3）范围 for 语句</p>
+<pre><code class="hljs less"><span class="hljs-selector-tag">for</span> (<span class="hljs-attribute">declaration </span>: expression)        <span class="hljs-selector-tag">statement</span></code></pre>
+
+<p>（4）do while 语句</p>
+<pre><code class="hljs lisp">do     statementwhile (<span class="hljs-name">condition</span>)</code></pre>
+
+<h3 id="跳转语句"><a href="#跳转语句" class="headerlink" title="跳转语句"></a>跳转语句</h3><h4 id="break"><a href="#break" class="headerlink" title="break"></a><strong>break</strong></h4><p>break只能出现在迭代语句或者switch语句内部。仅限于终止离它最近的语句，然后从这些语句之后的第一条语句开始执行。</p>
+<h4 id="continue"><a href="#continue" class="headerlink" title="continue"></a><strong>continue</strong></h4><p>continue语句终止最近的循环中的当前迭代并立即开始下一次迭代。</p>
+<h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a><strong>goto</strong></h4><p>goto的作用是从goto语句无条件跳转到同一函数内的另一条语句。</p>
+<p>容易造成控制流混乱，应禁止使用。</p>
+<h4 id="return"><a href="#return" class="headerlink" title="return"></a><strong>return</strong></h4><h3 id="try语句块和异常处理"><a href="#try语句块和异常处理" class="headerlink" title="try语句块和异常处理"></a>try语句块和异常处理</h3><p>C++中异常处理包括：throw表达式、try语句块。</p>
+<p>try和catch，将一段可能抛出异常的语句序列括在花括号里构成try语句块。catch子句负责处理代码抛出的异常。</p>
+<p>throw表达式语句，终止函数的执行。抛出一个异常，并把控制权转移到能处理该异常的最近的catch字句。</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a><strong>函数</strong></h2><h3 id="函数基础"><a href="#函数基础" class="headerlink" title="函数基础"></a>函数基础</h3><h4 id="形参和实参："><a href="#形参和实参：" class="headerlink" title="形参和实参："></a>形参和实参：</h4><p>实参的类型必须与对应的形参类型匹配。</p>
+<p>函数的调用规定实参数量应与形参数量一致。</p>
+<h4 id="局部对象"><a href="#局部对象" class="headerlink" title="局部对象"></a>局部对象</h4><p>形参和参数体内部定义的变量统称为<strong>局部变量</strong>，它们对函数而言是”局部”的，仅在函数的作用域内可见，同时局部变量还会隐藏外层作用域中同名的其他变量。</p>
+<p><strong>自动对象</strong>：只存在于块执行期间的对象。</p>
+<p>局部静态对象：在程序的执行路径<strong>第一次经过对象定义语句时候进行初始化</strong>，并且直到程序终止才会被销毁。 </p>
+<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">size_t</span> <span class="hljs-title">count_calls</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">size_t</span> ctr = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> ++ctr;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++)
+    &#123;
+        <span class="hljs-built_in">cout</span> &lt;&lt; count_calls() &lt;&lt; <span class="hljs-built_in">endl</span>;  <span class="hljs-comment">// 程序输出12345678910</span>
+    &#125;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
+
+<h4 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h4><p>函数的三要素：（返回类型、函数名、形参类型）。</p>
+<p>函数可被声明多次，但只能被定义一次。</p>
+<h4 id="分离式编译"><a href="#分离式编译" class="headerlink" title="分离式编译"></a>分离式编译</h4><p>分离式编译允许把程序分割到几个文件中去，每个文件独立编译。</p>
+<p>编译-&gt;链接</p>
+<h3 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h3><p>当形参是引用类型，这时它对应的实参被引用传递或者函数被传引用调用。</p>
+<p>当实参被拷贝给形参，这样的实参被值传递或者函数被传值调用。</p>
+<p>（1）传值参数</p>
+<p>（2）被引用传参</p>
+<p>（3）const形参和实参</p>
+<p>（4）数组形参</p>
+<p> 为函数传递一个数组时，实际上传递的是指向数组首元素的指针。 </p>
+<p>void print(const int*);<br>void pring(const int[]);<br>void print(const int[10]);<br>// 以上三个函数等价 </p>
+<p> 数组引用实参：f(int (&amp;arr)[10]) </p>
+<pre><code class="hljs c++"><span class="hljs-keyword">int</span> *matrix[<span class="hljs-number">10</span>];   <span class="hljs-comment">// 10个指针构成的数组</span>
+<span class="hljs-keyword">int</span> (*matrix)[<span class="hljs-number">10</span>]; <span class="hljs-comment">// 指向含有10个整数的数组的指针 </span></code></pre>
+
+<p>（5）含有可变形参的数组</p>
+<p>initializer_list</p>
+<pre><code class="hljs reasonml"><span class="hljs-keyword">for</span> err<span class="hljs-constructor">_msg(<span class="hljs-params">initializer_list</span>&lt;<span class="hljs-params">string</span>&gt; <span class="hljs-params">li</span>)</span></code></pre>
+
+<h4 id="返回类型和return语句"><a href="#返回类型和return语句" class="headerlink" title="返回类型和return语句"></a>返回类型和return语句</h4><p>2种：无返回值函数和右返回值函数。</p>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">return</span>;
+<span class="hljs-keyword">return</span> expression;</code></pre>
+
+<p>函数完成后，它所占用的存储空间也会随着被释放掉。</p>
+<p>返回局部对象的引用是错误的；返回局部对象的指针也是错误的。 </p>
+<h3 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h3><p>重载函数：同一作用域内的几个函数名字相同但形参列表不通，我们称之为重载函数。（overloaded）。</p>
+<p><strong>不允许2个函数除了返回类型外其他所有的要素都相同。</strong></p>
+<h4 id="重载与作用域"><a href="#重载与作用域" class="headerlink" title="重载与作用域"></a>重载与作用域</h4><p>如果在内存作用域中声明名字，它将隐藏外层作用域中声明的同名实体。</p>
+<h3 id="特殊用途语言特性"><a href="#特殊用途语言特性" class="headerlink" title="特殊用途语言特性"></a>特殊用途语言特性</h3><p>（1）默认实参</p>
+<p>函数调用时，实参按其位置解析，默认实参负责填补函数调用缺少的尾部实参。</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-built_in">string</span>::size_type sz;
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">screen</span><span class="hljs-params">(sz ht = <span class="hljs-number">24</span>, sz wid = <span class="hljs-number">80</span>, <span class="hljs-keyword">char</span> background = <span class="hljs-string">&#x27; &#x27;</span>)</span></span>;</code></pre>
+
+<p>::: tip</p>
+<p>当设计含有默认实参的函数时，需要合理设置形参的顺序。一旦某个形参被赋予了默认值，它后面的所有形参都必须有默认值。</p>
+<p>:::</p>
+<p>（2）内联函数</p>
+<p>使用关键词inline来声明内联函数。</p>
+<p>内联用于<strong>优化规模较小，流程直接，频繁调用的函数</strong>。</p>
+<p>（3）constexpr函数</p>
+<p>constexpr函数是指能用于常量表达式的函数。</p>
+<h3 id="函数匹配"><a href="#函数匹配" class="headerlink" title="函数匹配"></a>函数匹配</h3><p>Step1:确定候选函数和可选函数。</p>
+<p>Step2:寻找最佳匹配。</p>
+<h3 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h3><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">useBigger</span> <span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s1, <span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s2, <span class="hljs-keyword">bool</span> pf(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;, <span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;))</span></span>;
+等价于
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">useBigger</span> <span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s1, <span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s2, <span class="hljs-keyword">bool</span> (*pf)(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;, <span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;))</span></span>;</code></pre>
+
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>类的基本思想是<strong>数据抽象和封装</strong>。</p>
+<p>抽象是一种依赖于接口和实现分离的编程技术。</p>
+<p>封装实现了类的接口和实现的分离。</p>
 
             </article>
             <hr>
@@ -656,12 +755,18 @@ n = p-&gt;<span class="hljs-built_in">size</span>(); </code></pre>
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2021/04/14/leetcode/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2021/03/31/numpy/">
-                        <span class="hidden-mobile">numpy</span>
+                      <a href="/2021/04/08/c++core-guidelines/">
+                        <span class="hidden-mobile">c++core-guidelines</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
